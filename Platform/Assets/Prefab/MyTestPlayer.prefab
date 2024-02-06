@@ -16,13 +16,8 @@ GameObject:
   - component: {fileID: 2881941354941625700}
   - component: {fileID: 2881941354941625703}
   - component: {fileID: 2881941354941625702}
-  - component: {fileID: 2881941354941625697}
   - component: {fileID: 2881941354941625696}
-  - component: {fileID: 2881941354941625699}
-  - component: {fileID: 2881941354941625698}
   - component: {fileID: 2881941354941625725}
-  - component: {fileID: 2881941354941625724}
-  - component: {fileID: 2881941354941625727}
   - component: {fileID: 2881941354941625726}
   - component: {fileID: 2881941354941625721}
   - component: {fileID: 2881941354941625720}
@@ -336,33 +331,6 @@ MonoBehaviour:
   TouchTheGroundFeedback: {fileID: 0}
   MinimumAirTimeBeforeFeedback: 0.2
   StopWalkingWhenCollidingWithAWall: 0
---- !u!114 &2881941354941625697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2881941354941625718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8071d2257235e403da6c6a0a966d6683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  CrawlAuthorized: 1
-  CrawlSpeed: 4
-  ResizeColliderWhenCrouched: 0
-  CrouchedBoxColliderSize: {x: 1, y: 1}
-  CanCrouchWhileMoving: 1
-  CanMoveWhileCrouching: 1
-  InATunnel: 0
-  MoveCameraTarget: 1
-  CameraTargetOffset: {x: 0, y: -3, z: 0}
 --- !u!114 &2881941354941625696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,46 +371,6 @@ MonoBehaviour:
   SuccessiveDashResetMethod: 0
   SuccessiveDashResetDuration: 2
   InvincibleWhileDashing: 0
---- !u!114 &2881941354941625699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2881941354941625718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157b891c059034cea94ae0c9e235df50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  ShakeParameters: {x: 1.5, y: 0.5, z: 1}
-  DiveAcceleration: 2
---- !u!114 &2881941354941625698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2881941354941625718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ba246fa819940cb8f8f89f002bb088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  DanglingRaycastOrigin: {x: 0.7, y: -0.25, z: 0}
-  DanglingRaycastLength: 2
 --- !u!114 &2881941354941625725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,58 +404,6 @@ MonoBehaviour:
   AirJumpFeedbacks: {fileID: 0}
   DoubleJumpFeedbacks: {fileID: 0}
   NumberOfJumpsLeft: 0
---- !u!114 &2881941354941625724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2881941354941625718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd71e945bfcd4897b3a95607989c7d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  RunSpeed: 16
-  StopRunAtLowSpeed: 0
-  RunLowSpeedThreshold: 1
-  ReadInput: 1
-  AutoRun: 0
-  AutoRunThreshold: 0.6
---- !u!114 &2881941354941625727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2881941354941625718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d37391d2147a467db78bf732ae24daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  MovingPlatformsJumpCollisionOffDuration: 0.05
-  ParticleEmitter: {fileID: 0}
-  JetpackForce: 2.5
-  JetpackUnlimited: 0
-  JetpackFuelDuration: 5
-  JetpackRefuelCooldown: 1
-  RefuelSpeed: 0.5
-  MinimumFuelRequirement: 0.2
-  JetpackRefueledSfx: {fileID: 0}
-  JetpackFuelDurationLeft: 0
 --- !u!114 &2881941354941625726
 MonoBehaviour:
   m_ObjectHideFlags: 0
