@@ -373,7 +373,15 @@ namespace MoreMountains.CorgiEngine
 					}
 					else
 					{
-						_movement.ChangeState(CharacterStates.MovementStates.Idle);
+						if (_movement.CurrentState == CharacterStates.MovementStates.Attacking)
+						{
+
+						}
+						else
+						{
+                            _movement.ChangeState(CharacterStates.MovementStates.Idle);
+                        }
+						
 					}	
 				}
 

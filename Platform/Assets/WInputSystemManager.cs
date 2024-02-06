@@ -9,7 +9,7 @@ public class WInputSystemManager : InputManager
 {
     public PlatformInput InputActions;
 
-    public MMInput.IMButton AttackButton { get; protected set; }
+   
 
 
     protected bool _inputActionsEnabled = true;
