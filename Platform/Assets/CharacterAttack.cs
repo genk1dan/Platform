@@ -11,7 +11,7 @@ public class CharacterAttack : CharacterAbility
     protected bool _charHztlMvmtFlipInitialSettingSet = false;
 
     protected IEnumerator _attackCoroutine;
-
+    Rigidbody2D _rigidbody2;
     protected const string _attackAnimationParameterName = "Attack";
     protected int _attackAnimationParameter;
     protected override void Initialization()
@@ -21,6 +21,7 @@ public class CharacterAttack : CharacterAbility
         {
             _charHztlMvmtFlipInitialSetting = _characterHorizontalMovement.FlipCharacterToFaceDirection;
         }
+        _rigidbody2 = GetComponent<Rigidbody2D>();
     }
     protected override void HandleInput()
     {
@@ -33,13 +34,10 @@ public class CharacterAttack : CharacterAbility
     public void Attack()
     {
         _movement.ChangeState(CharacterStates.MovementStates.Attacking);
-        //if(_characterHorizontalMovement != null)
-        //{
-        //    _characterHorizontalMovement.MovementForbidden = true;
-        //}
+      
         // we trigger a character event
         MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.HandleWeapon);
-       
+        _controller.SetHorizontalForce(0);
         _controller.DefaultParameters.Gravity = -20;
         StartCoroutine(AttackCor());
 

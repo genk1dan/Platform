@@ -315,6 +315,11 @@ PrefabInstance:
       propertyPath: BlockingMovementStates.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625701, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: DefaultParameters.SpeedFactor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: WalkSpeed
@@ -398,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.22059447
+      value: 0.21085346
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
@@ -408,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: m_Offset.x
-      value: -0.073366255
+      value: -0.0046378337
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
