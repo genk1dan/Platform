@@ -315,15 +315,30 @@ PrefabInstance:
       propertyPath: BlockingMovementStates.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625696, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: DashForce
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625701, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: DefaultParameters.SpeedFactor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625701, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: DefaultParameters.SpeedAccelerationInAir
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: WalkSpeed
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: AirControl
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
@@ -428,7 +443,7 @@ PrefabInstance:
     - target: {fileID: 2881941354941625725, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: JumpHeight
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625725, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}

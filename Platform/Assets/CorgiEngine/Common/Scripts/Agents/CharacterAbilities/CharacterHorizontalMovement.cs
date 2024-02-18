@@ -231,9 +231,13 @@ namespace MoreMountains.CorgiEngine
 			{
 				return;
 			}
+            if (_movement.CurrentState == CharacterStates.MovementStates.DashAttacking)
+            {
+                return;
+            }
 
-			// if we're grounded and moving, and currently Idle, Dangling or Falling, we become Walking
-			if ( (_controller.State.IsGrounded)
+            // if we're grounded and moving, and currently Idle, Dangling or Falling, we become Walking
+            if ( (_controller.State.IsGrounded)
 			     && (_normalizedHorizontalSpeed != 0)
 			     && ( (_movement.CurrentState == CharacterStates.MovementStates.Idle)
 			          || (_movement.CurrentState == CharacterStates.MovementStates.Dangling)
@@ -365,7 +369,8 @@ namespace MoreMountains.CorgiEngine
 			{
 				if ((_movement.CurrentState != CharacterStates.MovementStates.Jumping)
 				    && (_movement.CurrentState != CharacterStates.MovementStates.Rolling)
-				    && (_movement.CurrentState != CharacterStates.MovementStates.Dashing))
+				    && (_movement.CurrentState != CharacterStates.MovementStates.Dashing)
+                      && (_movement.CurrentState != CharacterStates.MovementStates.DashAttacking))
 				{
 					if (_controller.State.ColliderResized)
 					{

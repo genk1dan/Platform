@@ -25,7 +25,8 @@ public class CharacterAttack : CharacterAbility
     }
     protected override void HandleInput()
     {
-        if (_inputManager.AttackButton.State.CurrentState == MMInput.ButtonStates.ButtonDown)
+        if (_inputManager.AttackButton.State.CurrentState == MMInput.ButtonStates.ButtonDown&& _movement.CurrentState != CharacterStates.MovementStates.Dashing
+            && _movement.CurrentState != CharacterStates.MovementStates.DashAttacking)
         {
             Attack();
         }
@@ -37,7 +38,11 @@ public class CharacterAttack : CharacterAbility
       
         // we trigger a character event
         MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.HandleWeapon);
-        _controller.SetHorizontalForce(0);
+        if (_controller.State.IsGrounded)
+        {
+           _controller.SetHorizontalForce(0);
+        }
+       
         _controller.DefaultParameters.Gravity = -20;
         StartCoroutine(AttackCor());
 
@@ -62,7 +67,7 @@ public class CharacterAttack : CharacterAbility
         float rollStartedAt = Time.time;
 
         // we keep rolling until we've reached our target distance or until we get interrupted
-        while ((Time.time - rollStartedAt < 1.2f)
+        while ((Time.time - rollStartedAt < 0.4f)
                 && !_controller.State.TouchingLevelBounds
                 && _movement.CurrentState == CharacterStates.MovementStates.Attacking)
         {

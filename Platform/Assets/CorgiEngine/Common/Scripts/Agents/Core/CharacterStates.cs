@@ -53,7 +53,8 @@ namespace MoreMountains.CorgiEngine
 			LedgeClimbing,
 			Rolling,
 			Attacking,
-            StrikeToFly
+            StrikeToFly,
+			DashAttacking
         }
 	}
 }

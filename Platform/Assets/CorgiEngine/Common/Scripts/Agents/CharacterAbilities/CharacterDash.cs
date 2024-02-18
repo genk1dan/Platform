@@ -106,11 +106,17 @@ namespace MoreMountains.CorgiEngine
 		// animation parameters
 		protected const string _dashingAnimationParameterName = "Dashing";
 		protected int _dashingAnimationParameter;
+        protected const string _dashAttackingAnimationParameterName = "DashAttacking";
+        protected int _dashAttackingAnimationParameter;
 
-		/// <summary>
-		/// Initializes our aim instance
-		/// </summary>
-		protected override void Initialization()
+		protected bool _dashAttackAnim;
+		protected bool _dashAttack;
+		protected IEnumerator _dashAttackCoroutine;
+
+        /// <summary>
+        /// Initializes our aim instance
+        /// </summary>
+        protected override void Initialization()
 		{
 			base.Initialization();
 			Aim.Initialization();
@@ -127,7 +133,58 @@ namespace MoreMountains.CorgiEngine
 			{
 				StartDash();
 			}
+			if(_inputManager.AttackButton.State.CurrentState == MMInput.ButtonStates.ButtonDown&& _movement.CurrentState == CharacterStates.MovementStates.Dashing)
+			{
+				_dashAttackAnim = false;
+                _dashAttack = true;
+               // DashAttack();
+			}
 		}
+
+		IEnumerator DashAttack()
+		{
+            // if the character is not in a position where it can move freely, we do nothing.
+            if (!AbilityAuthorized
+                 || (_condition.CurrentState != CharacterStates.CharacterConditions.Normal))
+            {
+                yield break;
+            }
+          
+            float rollStartedAt = Time.time;
+            _movement.ChangeState(CharacterStates.MovementStates.DashAttacking);
+			_dashAttackAnim = true;
+         
+            // we trigger a character event
+            MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.HandleWeapon);
+            // we keep rolling until we've reached our target distance or until we get interrupted
+            while ((Time.time - rollStartedAt < 0.3f)
+                    && !_controller.State.TouchingLevelBounds
+                    && _movement.CurrentState == CharacterStates.MovementStates.DashAttacking)
+            {
+                Debug.Log(_movement.CurrentState);
+                yield return null;
+            }
+            Debug.Log(_movement.CurrentState);
+            MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.HandleWeapon, MMCharacterEvent.Moments.End);
+            _dashAttackAnim = false;
+            // once the boost is complete, if we were rolling, we make it stop and start the roll cooldown
+            if (_movement.CurrentState == CharacterStates.MovementStates.DashAttacking)
+            {
+				_dashAttack = false;
+				
+			
+                if (_controller.State.IsGrounded)
+                {
+                    _movement.ChangeState(CharacterStates.MovementStates.Idle);
+                }
+                else
+                {
+                    _movement.RestorePreviousState();
+                }
+            }
+			StopCoroutine(DashAttack());
+
+        }
 
 		/// <summary>
 		/// The second of the 3 passes you can have in your ability. Think of it as Update()
@@ -148,6 +205,8 @@ namespace MoreMountains.CorgiEngine
 				_dashEndedNaturally = true;
 				_controller.Parameters.MaximumSlopeAngle = _slopeAngleSave;
 			}
+
+		
 
 			HandleAmountOfDashesLeft();
 		}
@@ -270,7 +329,7 @@ namespace MoreMountains.CorgiEngine
 			
 			// we set its dashing state to true
 			_movement.ChangeState(CharacterStates.MovementStates.Dashing);
-
+			_dashAttack = false;
 			// we start our sounds
 			PlayAbilityStartFeedbacks();
 			MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.Dash, MMCharacterEvent.Moments.Start);
@@ -304,6 +363,7 @@ namespace MoreMountains.CorgiEngine
 
 			// we launch the boost corountine with the right parameters
 			_dashCoroutine = Dash();
+			_dashAttackCoroutine=DashAttack();
 			StartCoroutine(_dashCoroutine);
 		}
 
@@ -473,18 +533,28 @@ namespace MoreMountains.CorgiEngine
 			StopStartFeedbacks();
 			MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.Dash, MMCharacterEvent.Moments.End);
 			PlayAbilityStopFeedbacks();
-
-			// once the boost is complete, if we were dashing, we make it stop and start the dash cooldown
-			if (_movement.CurrentState == CharacterStates.MovementStates.Dashing)
+          
+            // once the boost is complete, if we were dashing, we make it stop and start the dash cooldown
+            if (_movement.CurrentState == CharacterStates.MovementStates.Dashing)
 			{
-				if (_controller.State.IsGrounded)
-				{
-					_movement.ChangeState(CharacterStates.MovementStates.Idle);
+			
+				if (_dashAttack)
+                {
+                    StartCoroutine(DashAttack());
 				}
 				else
 				{
-					_movement.RestorePreviousState();
-				}                
+                    _movement.ChangeState(CharacterStates.MovementStates.Idle);
+                }
+              
+    //            if (_controller.State.IsGrounded)
+				//{
+				//	_movement.ChangeState(CharacterStates.MovementStates.Idle);
+				//}
+				//else
+				//{
+				//	_movement.RestorePreviousState();
+				//}                
 			}
 		}
 
@@ -494,7 +564,8 @@ namespace MoreMountains.CorgiEngine
 		protected override void InitializeAnimatorParameters()
 		{
 			RegisterAnimatorParameter(_dashingAnimationParameterName, AnimatorControllerParameterType.Bool, out _dashingAnimationParameter);
-		}
+            RegisterAnimatorParameter(_dashAttackingAnimationParameterName, AnimatorControllerParameterType.Bool, out _dashAttackingAnimationParameter);
+        }
 
 		/// <summary>
 		/// At the end of the cycle, we update our animator's Dashing state 
@@ -502,7 +573,8 @@ namespace MoreMountains.CorgiEngine
 		public override void UpdateAnimator()
 		{
 			MMAnimatorExtensions.UpdateAnimatorBool(_animator, _dashingAnimationParameter, (_movement.CurrentState == CharacterStates.MovementStates.Dashing), _character._animatorParameters, _character.PerformAnimatorSanityChecks);
-		}
+            MMAnimatorExtensions.UpdateAnimatorBool(_animator, _dashAttackingAnimationParameter, _dashAttackAnim, _character._animatorParameters, _character.PerformAnimatorSanityChecks);
+        }
 
 		/// <summary>
 		/// On reset ability, we cancel all the changes made
@@ -517,8 +589,9 @@ namespace MoreMountains.CorgiEngine
 
 			if (_animator != null)
 			{
-				MMAnimatorExtensions.UpdateAnimatorBool(_animator, _dashingAnimationParameter, false, _character._animatorParameters, _character.PerformAnimatorSanityChecks);	
-			}
+				MMAnimatorExtensions.UpdateAnimatorBool(_animator, _dashingAnimationParameter, false, _character._animatorParameters, _character.PerformAnimatorSanityChecks);
+                MMAnimatorExtensions.UpdateAnimatorBool(_animator, _dashAttackingAnimationParameter, false, _character._animatorParameters, _character.PerformAnimatorSanityChecks);
+            }
 		}
 	}
 }
