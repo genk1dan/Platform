@@ -671,7 +671,8 @@ namespace MoreMountains.CorgiEngine
 		/// </summary>
 		protected override void InitializeAnimatorParameters()
 		{
-			RegisterAnimatorParameter(_jumpingAnimationParameterName, AnimatorControllerParameterType.Bool, out _jumpingAnimationParameter);
+           // RegisterAnimatorParameter(_jumpingAnimationParameterName, AnimatorControllerParameterType.Trigger, out _jumpingAnimationParameter);
+           RegisterAnimatorParameter(_jumpingAnimationParameterName, AnimatorControllerParameterType.Bool, out _jumpingAnimationParameter);
 			RegisterAnimatorParameter(_doubleJumpingAnimationParameterName, AnimatorControllerParameterType.Bool, out _doubleJumpingAnimationParameter);
 			RegisterAnimatorParameter(_hitTheGroundAnimationParameterName, AnimatorControllerParameterType.Bool, out _hitTheGroundAnimationParameter);
 			RegisterAnimatorParameter(_numberOfJumpsLeftParameterName, AnimatorControllerParameterType.Int, out _numberOfJumpsLeftAnimationParameter);
@@ -682,7 +683,8 @@ namespace MoreMountains.CorgiEngine
 		/// </summary>
 		public override void UpdateAnimator()
 		{
-			MMAnimatorExtensions.UpdateAnimatorBool(_animator, _jumpingAnimationParameter, (_movement.CurrentState == CharacterStates.MovementStates.Jumping),_character._animatorParameters, _character.PerformAnimatorSanityChecks);
+			//MMAnimatorExtensions.UpdateAnimatorTrigger(_animator, _jumpingAnimationParameter,  _character._animatorParameters, _character.PerformAnimatorSanityChecks);
+           MMAnimatorExtensions.UpdateAnimatorBool(_animator, _jumpingAnimationParameter, (_movement.CurrentState == CharacterStates.MovementStates.Jumping),_character._animatorParameters, _character.PerformAnimatorSanityChecks);
 			MMAnimatorExtensions.UpdateAnimatorBool(_animator, _doubleJumpingAnimationParameter, _doubleJumping,_character._animatorParameters, _character.PerformAnimatorSanityChecks);
 			MMAnimatorExtensions.UpdateAnimatorBool(_animator, _hitTheGroundAnimationParameter, _controller.State.JustGotGrounded, _character._animatorParameters, _character.PerformAnimatorSanityChecks);
 			MMAnimatorExtensions.UpdateAnimatorInteger(_animator, _numberOfJumpsLeftAnimationParameter, NumberOfJumpsLeft, _character._animatorParameters, _character.PerformAnimatorSanityChecks);

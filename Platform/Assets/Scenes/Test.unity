@@ -303,15 +303,47 @@ PrefabInstance:
       propertyPath: hand
       value: 
       objectReference: {fileID: 2096897010}
+    - target: {fileID: 2128189701, guid: 631c7424cc1aa724e99b20fb3089d87c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 312496b25d842af4a938e96c7d5aaee0, type: 2}
+    - target: {fileID: 2128189702, guid: 631c7424cc1aa724e99b20fb3089d87c, type: 3}
+      propertyPath: BlockingMovementStates.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128189702, guid: 631c7424cc1aa724e99b20fb3089d87c, type: 3}
+      propertyPath: BlockingMovementStates.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: WalkSpeed
-      value: 3
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: BlockingMovementStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625702, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: BlockingMovementStates.Array.data[0]
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625705, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625705, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625705, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625705, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
@@ -363,6 +395,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.22059447
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.33777845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.073366255
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941354941625706, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.041661292
+      objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625718, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: m_Name
@@ -371,13 +423,24 @@ PrefabInstance:
     - target: {fileID: 2881941354941625725, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: JumpHeight
-      value: 2.025
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2881941354941625725, guid: 631c7424cc1aa724e99b20fb3089d87c,
         type: 3}
       propertyPath: JumpReleaseForceFactor
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881941355820838074, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881941355820838074, guid: 631c7424cc1aa724e99b20fb3089d87c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631c7424cc1aa724e99b20fb3089d87c, type: 3}
 --- !u!4 &2128189717 stripped
@@ -1050,7 +1113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &6578476397189267691
 Rigidbody2D:
   serializedVersion: 4

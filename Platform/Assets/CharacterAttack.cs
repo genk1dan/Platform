@@ -39,6 +39,7 @@ public class CharacterAttack : CharacterAbility
         //}
         // we trigger a character event
         MMCharacterEvent.Trigger(_character, MMCharacterEventTypes.HandleWeapon);
+       
         _controller.DefaultParameters.Gravity = -20;
         StartCoroutine(AttackCor());
 
@@ -63,7 +64,7 @@ public class CharacterAttack : CharacterAbility
         float rollStartedAt = Time.time;
 
         // we keep rolling until we've reached our target distance or until we get interrupted
-        while ((Time.time - rollStartedAt < 0.33f)
+        while ((Time.time - rollStartedAt < 1.2f)
                 && !_controller.State.TouchingLevelBounds
                 && _movement.CurrentState == CharacterStates.MovementStates.Attacking)
         {
