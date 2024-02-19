@@ -99,6 +99,7 @@ namespace MoreMountains.CorgiEngine
 			_tweenType = gripTarget.TweenType;
 			_tweenDuration = gripTarget.TweenDuration;
 			_movement.ChangeState (CharacterStates.MovementStates.Gripping);
+			Debug.Log("Gripping");
 		}
 
 		/// <summary>
